@@ -1,0 +1,28 @@
+.container {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+.select {
+  margin: 10px;
+}
+
+.searchInputs {
+  align-items: center;
+  display: flex;
+  justify-content: flex-end;
+  padding: 0 20px;
+}
+
+.searchInputs {
+  align-items: center;
+  display: flex;
+}
+
+.noResults {
+  margin: auto;
+  width: 100%;
+}

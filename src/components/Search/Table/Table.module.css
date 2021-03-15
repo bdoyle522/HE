@@ -1,0 +1,22 @@
+.table {
+  max-height: 700px;
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+}
+
+.row:hover {
+  background-color: rgba(0, 0, 0, 0.08);
+  cursor: pointer;
+}
+
+.spinner {
+  margin-top: 50px;
+  text-align: center;
+}
+
+.cardWrapper {
+  margin: 20px;
+}

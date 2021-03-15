@@ -1,0 +1,10 @@
+.select {
+  margin: 10px;
+}
+
+.filterWrapper {
+  align-items: center;
+  display: flex;
+  justify-content: flex-end;
+  padding: 0 20px;
+}
