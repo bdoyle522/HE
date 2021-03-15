@@ -10,8 +10,9 @@ import './App.css';
 function App() {
   const [results, setResults] = useState([]);
   const [filteredResults, setFilteredResults] = useState([]);
-  const [selectedRepo, setSelectedRow] = useState(null);
   const [searchVal, onChange] = useState('');
+  const [previousSearchVal, setPreviousSearchVal] = useState('');
+  const [selectedRepo, setSelectedRow] = useState(null);
   const [resultsLoading, setResultsLoading] = useState(false);
   const [selectedLanguage, setSelectedLanguage] = useState(ALL);
 
@@ -19,8 +20,9 @@ function App() {
 
   const onSearch = async (sort, sortOrder) => {
     setResultsLoading(true);
+    const valueToSearch = !sort && !sortOrder ? searchVal : previousSearchVal;
     const { results: repos, status } = await fetchRepos(
-      searchVal,
+      valueToSearch,
       sort,
       sortOrder
     );
@@ -32,6 +34,7 @@ function App() {
     }
     setResults(repos);
     setFilteredResults(repos);
+    setPreviousSearchVal(valueToSearch);
     setSelectedLanguage(ALL);
   };
 

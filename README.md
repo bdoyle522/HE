@@ -1,3 +1,11 @@
+# Project Description
+
+UI interface to search the GitHub repository API. As stated in challenge README, search will be returned in list form. Clicking on any list item will display the details page. Language selector will appear with results with a Front End filter. I did not see any way to filter on the bac
+
+## Considerations
+
+The sorting headers will only work for Stars column, as that is the only column that is sortable by the GitHub API. As such, I left out the ability to revert to the default sort, because "best match" is not a column. I could have added a separate button to do so, however since that extra button would essentially just be calling search again, I just left it out.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
