@@ -41,6 +41,7 @@ export const Table = ({
     // we'll limit the sorting accordingly
     if (key !== STARS) return;
     const newSortOrder = sortOrder === ASCENDING ? DESCENDING : ASCENDING;
+    // search key is stars instead of stargazers_count
     onSearch('stars', newSortOrder);
     setSort({ sortKey: key, sortOrder: newSortOrder });
   };
@@ -91,7 +92,9 @@ export const Table = ({
               <>{tableRows}</>
             ) : (
               <TableRow className={styles.spinner}>
-                <CircularProgress />
+                <td>
+                  <CircularProgress />
+                </td>
               </TableRow>
             )}
           </TableBody>

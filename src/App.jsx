@@ -3,11 +3,16 @@ import { Redirect, Route, Switch, useHistory } from 'react-router-dom';
 import { fetchRepos } from './api';
 import { Search } from './components/Search';
 import { Details } from './components/Details';
-import { ALL, OK } from './constants';
+import { ALL, OK, ASCENDING } from './constants';
 
 import './App.css';
 
+const initialSortState = { sortKey: '', sortOrder: ASCENDING };
+
 function App() {
+  // too much state living in this component, but with react-router mounting and unmounting components,
+  // we need to keep the state a level higher from the pages so that we can maintain on history.goBack().
+  // easily solved by a context, redux, or some other state management, if this was a more complex application
   const [results, setResults] = useState([]);
   const [filteredResults, setFilteredResults] = useState([]);
   const [searchVal, onChange] = useState('');
@@ -15,6 +20,7 @@ function App() {
   const [selectedRepo, setSelectedRow] = useState(null);
   const [resultsLoading, setResultsLoading] = useState(false);
   const [selectedLanguage, setSelectedLanguage] = useState(ALL);
+  const [sort, setSort] = useState(initialSortState);
 
   const history = useHistory();
 
@@ -96,6 +102,8 @@ function App() {
             onSelectRow={onSelectRow}
             resultsLoading={resultsLoading}
             selectedLanguage={selectedLanguage}
+            sort={sort}
+            setSort={setSort}
           />
         </Route>
         <Redirect exact path="*" to="/" />

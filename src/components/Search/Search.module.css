@@ -21,7 +21,13 @@
   display: flex;
 }
 
-.noResults {
-  margin: auto;
+.noResultsText {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
   width: 100%;
+}
+
+.textCard {
+  margin: 20px;
 }

@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import cn from 'classnames';
-import { Button, TextField, Typography } from '@material-ui/core';
+import { Button, TextField, Typography, Card } from '@material-ui/core';
 import { Search as SearchIcon } from '@material-ui/icons';
 import { Table } from './Table';
 import { ASCENDING } from '../../constants';
@@ -22,9 +21,9 @@ export const Search = ({
   languages,
   selectedLanguage,
   setSelectedLanguage,
+  sort,
+  setSort,
 }) => {
-  const [sort, setSort] = useState(initialSortState);
-
   const onSubmit = (e) => {
     e.preventDefault();
     if (searchVal) {
@@ -33,19 +32,10 @@ export const Search = ({
     }
   };
 
-  const onSortChange = (sort, sortOrder) => {
-    onSearch(sort, sortOrder);
-  };
-
   const id = 'search';
 
   return (
-    <div
-      className={cn(styles.wrapper, {
-        [styles.noResults]: !results.length && !resultsLoading,
-      })}
-      id={id}
-    >
+    <div id={id}>
       <form
         onSubmit={onSubmit}
         className={styles.container}
@@ -80,6 +70,13 @@ export const Search = ({
           </Button>
         </div>
       </form>
+      {!results.length && !resultsLoading && (
+        <Card className={styles.textCard}>
+          <Typography className={styles.noResultsText}>
+            If your search returns any results, it will be displayed here.
+          </Typography>
+        </Card>
+      )}
       <LanguageSelector
         languages={languages}
         setSelectedLanguage={setSelectedLanguage}
@@ -92,7 +89,7 @@ export const Search = ({
         data={results}
         onSelectRow={onSelectRow}
         loading={resultsLoading}
-        onSearch={onSortChange}
+        onSearch={onSearch}
         sort={sort}
         setSort={setSort}
         id={`${id}-table`}
@@ -111,4 +108,6 @@ Search.propTypes = {
   selectedLanguage: PropTypes.string.isRequired,
   setSelectedLanguage: PropTypes.func.isRequired,
   languages: PropTypes.arrayOf(PropTypes.string).isRequired,
+  sort: PropTypes.object.isRequired,
+  setSort: PropTypes.func.isRequired,
 };
