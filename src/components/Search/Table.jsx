@@ -12,9 +12,24 @@ import {
 } from '@material-ui/core';
 
 import styles from './Table.module.css';
-import { columns, OWNER, STARS } from '../../../constants';
+import {
+  ASCENDING,
+  DESCENDING,
+  columns,
+  OWNER,
+  STARS,
+  DESCRIPTION,
+} from '../../constants';
 
-const Table = ({ id, data, onSelectRow, loading, onSearch, sort, setSort }) => {
+export const Table = ({
+  id,
+  data,
+  onSelectRow,
+  loading,
+  onSearch,
+  sort,
+  setSort,
+}) => {
   if (!data.length && !loading) {
     return null;
   }
@@ -22,8 +37,10 @@ const Table = ({ id, data, onSelectRow, loading, onSearch, sort, setSort }) => {
   const { sortKey, sortOrder } = sort;
 
   const updateSort = (key) => {
+    // github only sorts on stars, and since we aren't paginating,
+    // we'll limit the sorting accordingly
     if (key !== STARS) return;
-    const newSortOrder = sortOrder === 'asc' ? 'desc' : 'asc';
+    const newSortOrder = sortOrder === ASCENDING ? DESCENDING : ASCENDING;
     onSearch('stars', newSortOrder);
     setSort({ sortKey: key, sortOrder: newSortOrder });
   };
@@ -36,6 +53,7 @@ const Table = ({ id, data, onSelectRow, loading, onSearch, sort, setSort }) => {
         key={key}
         aria-sort={key === sortKey ? sortOrder : 'none'}
         onClick={() => updateSort(id)}
+        width={id === DESCRIPTION ? '40%' : '15%'}
       >
         <TableSortLabel active={id === sortKey} direction={sortOrder}>
           {key}
@@ -53,7 +71,7 @@ const Table = ({ id, data, onSelectRow, loading, onSearch, sort, setSort }) => {
       {columns.map((col) => {
         const { id } = col;
         return (
-          <TableCell key={id}>
+          <TableCell key={id} width={id === DESCRIPTION ? '40%' : '15%'}>
             {id === OWNER ? data.owner.login ?? '' : data[id]}
           </TableCell>
         );
@@ -62,26 +80,26 @@ const Table = ({ id, data, onSelectRow, loading, onSearch, sort, setSort }) => {
   ));
 
   return (
-    <>
-      {loading ? (
-        <div className={styles.spinner}>
-          <CircularProgress />
-        </div>
-      ) : (
-        <Card className={styles.cardWrapper}>
-          <TableContainer className={styles.table} id={id}>
-            <MuiTable stickyHeader>
-              <TableHead>{tableHeaderCells}</TableHead>
-              <TableBody>{tableRows}</TableBody>
-            </MuiTable>
-          </TableContainer>
-        </Card>
-      )}
-    </>
+    <Card className={styles.cardWrapper}>
+      <TableContainer className={styles.table} id={id}>
+        <MuiTable stickyHeader>
+          <TableHead>
+            <TableRow>{tableHeaderCells}</TableRow>
+          </TableHead>
+          <TableBody>
+            {!loading ? (
+              <>{tableRows}</>
+            ) : (
+              <TableRow className={styles.spinner}>
+                <CircularProgress />
+              </TableRow>
+            )}
+          </TableBody>
+        </MuiTable>
+      </TableContainer>
+    </Card>
   );
 };
-
-export default Table;
 
 Table.propTypes = {
   id: PropTypes.string.isRequired,

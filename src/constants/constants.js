@@ -1,14 +1,14 @@
 export const ALL = 'All';
 export const OWNER = 'owner';
 export const STARS = 'stargazers_count';
-
+export const DESCRIPTION = 'description';
 export const columns = [
   {
     id: 'name',
     label: 'Name',
   },
   {
-    id: 'description',
+    id: DESCRIPTION,
     label: 'Description',
   },
   {
@@ -26,3 +26,8 @@ export const columns = [
 ];
 
 export const UNKNOWN = 'Unknown';
+
+export const ASCENDING = 'asc';
+export const DESCENDING = 'desc';
+
+export const OK = 200;

@@ -3,7 +3,7 @@ import { Redirect, Route, Switch, useHistory } from 'react-router-dom';
 import { fetchRepos } from './api';
 import { Search } from './components/Search';
 import { Details } from './components/Details';
-import { ALL } from './constants';
+import { ALL, OK } from './constants';
 
 import './App.css';
 
@@ -25,7 +25,9 @@ function App() {
       sortOrder
     );
     setResultsLoading(false);
-    if (status !== 200) {
+    if (status !== OK) {
+      // returning so that previous results are left showing,
+      // as opposed to clearing everything
       return alert('Your search has failed, please try again.');
     }
     setResults(repos);

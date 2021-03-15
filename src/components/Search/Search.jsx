@@ -4,12 +4,13 @@ import cn from 'classnames';
 import { Button, TextField, Typography } from '@material-ui/core';
 import { Search as SearchIcon } from '@material-ui/icons';
 import { Table } from './Table';
+import { ASCENDING } from '../../constants';
 
 import { LanguageSelector } from './LanguageSelector';
 
 import styles from './Search.module.css';
 
-const initialSortState = { sortKey: '', sortOrder: 'asc' };
+const initialSortState = { sortKey: '', sortOrder: ASCENDING };
 
 export const Search = ({
   onSearch,
@@ -27,6 +28,7 @@ export const Search = ({
   const onSubmit = (e) => {
     e.preventDefault();
     if (searchVal) {
+      setSort(initialSortState);
       onSearch();
     }
   };
@@ -49,9 +51,9 @@ export const Search = ({
         className={styles.container}
         id={`${id}-inputs`}
       >
-        <div>
-          <Typography variant="h6">GitHub Search Engine</Typography>
-        </div>
+        <Typography className={styles.searchEngine} variant="h6">
+          GitHub Search Engine
+        </Typography>
         <div className={styles.searchInputs}>
           <TextField
             value={searchVal}
@@ -64,10 +66,10 @@ export const Search = ({
           <Button
             id="search-button"
             disabled={!searchVal}
-            onClick={onSearch}
+            onClick={onSubmit}
             startIcon={<SearchIcon />}
-            // alternative to targeting multiple inner classes
-            // is hitting the style button
+            // alternative to targeting multiple inner mui classes
+            // is using `Button`'s style prop
             style={{
               backgroundColor: 'green',
               color: 'white',

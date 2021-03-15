@@ -35,11 +35,6 @@
   font-style: italic;
 }
 
-.infoGroup {
-  display: flex;
-  margin-right: 10px;
-}
-
 .star {
   margin-top: -2px;
 }
@@ -50,10 +45,6 @@
 
 .description {
   padding-bottom: 15px;
-}
-
-.icon {
-  margin-right: 5px;
 }
 
 .detailsWrapper {
