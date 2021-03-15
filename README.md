@@ -1,6 +1,6 @@
 # Project Description
 
-UI interface to search the GitHub repository API. As stated in challenge README, search will be returned in list form. Clicking on any list item will display the details page. Language selector will appear with results with a Front End filter. I did not see any way to filter on the bac
+UI interface to search the GitHub repository API. As stated in challenge README, search will be returned in list form. Clicking on any list item will display the details page. Language selector will appear with results with a Front End filter. I did not see any way to filter on the github api.
 
 ## Considerations
 
