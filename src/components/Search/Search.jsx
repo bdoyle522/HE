@@ -73,7 +73,7 @@ export const Search = ({
       {!results.length && !resultsLoading && (
         <Card className={styles.textCard}>
           <Typography className={styles.noResultsText}>
-            If your search returns any results, it will be displayed here.
+            If your search returns any results, they will be displayed here.
           </Typography>
         </Card>
       )}
