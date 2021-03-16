@@ -1,6 +1,6 @@
 # Project Description
 
-UI interface to search the GitHub repository API. As stated in challenge README, search will be returned in list form. Clicking on any list item will display the details page. Language selector will appear with results with a Front End filter.
+UI interface to search the GitHub repository API. As stated in challenge README, search will be returned in list form. Clicking on any list item will display the details page. Language selector will appear with results with a Front End filter. Run `yarn` in the root directory, then you will be able to run the commands such as `yarn start` as described below.
 
 ## Considerations
 
